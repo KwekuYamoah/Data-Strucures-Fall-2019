@@ -1,0 +1,56 @@
+package football;
+
+public class Player {
+ public static enum Position{GOALKEEPER, DEFENDER, MIDFIELDER, FORWARD};
+ 
+ private String name;
+ private Position position;
+ private Team team;
+ 
+ public Player(String name, Position position){
+  this.name = name;
+  this.position = position;
+  team = null;
+ }
+ 
+ public String getName() { return name; }
+ 
+ public Position getPosition() { return position; }
+ 
+ public Team getTeam() { return team; }
+ 
+ protected void setTeam(Team team) {
+  this.team = team;
+ }
+ 
+ public boolean hasTeam() { return (team != null); }
+ 
+ public void displayPlayerInfo(){
+  System.out.print("Name: " + name + ", Position: " + position +
+       ", Team: ");
+  if (team == null)
+   System.out.println("NONE");
+  else
+   System.out.println(team.getTeamName());
+ }
+ 
+ public static void listValidPositions() {
+  for (Position p: Position.values()){
+   System.out.println(p);
+  }
+ }
+ 
+ public static String getValidPositionsStr() {
+  String validPositionsStr = "";
+  boolean starting = true;
+  for (Position p: Position.values()){
+   if (starting)
+    starting = false;
+   else
+    validPositionsStr += ", ";
+   
+   validPositionsStr += p.toString();
+  }
+  return validPositionsStr;
+ }
+}
